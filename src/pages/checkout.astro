@@ -3,8 +3,29 @@ import { CheckoutForm } from "../components/checkout";
 import Layout from "../layouts/Layout.astro";
 ---
 
-<Layout title="Checkout" description="Checkout using a dummy method.">
-  <div class="lg:container mx-auto w-full lg:px-0 px-4">
-    <CheckoutForm client:load />
-  </div>
-</Layout>
+<checkout-abandoned-tracker>
+  <Layout title="Checkout" description="Checkout using a dummy method.">
+    <div class="lg:container mx-auto w-full lg:px-0 px-4">
+      <CheckoutForm client:load />
+    </div>
+  </Layout>
+</checkout-abandoned-tracker>
+
+<script>
+  class CheckoutAbandonedTracker extends HTMLElement {
+    constructor() {
+      super();
+
+      window.Bird.tracker.ecommerce.checkoutAbandoned({
+        checkout_id: "123456",
+        checkout_url: "https://dounut-astro-ashy.vercel.app/cart",
+        product_ids: ["1234", "2345"],
+        product_names: ["Product 1", "Product 2"],
+        total_price: 123,
+        currency: "EUR",
+        customer_email: "carles.ferrater@bird.com",
+      });
+    }
+  }
+  customElements.define("checkout-abandoned-tracker", CheckoutAbandonedTracker);
+</script>
