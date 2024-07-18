@@ -1,6 +1,7 @@
 import type { LocalCartItem } from "../use-cases/contracts/LocalCartItem";
 
 export const LocalCart = () => {
+    
     const cart =
         typeof window !== "undefined" && localStorage.getItem("cart")
             ? JSON.parse(localStorage.getItem("cart") || "{}")

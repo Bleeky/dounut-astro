@@ -3,12 +3,14 @@ import { TopicsDisplayer } from "./topics-displayer";
 import { Image } from "@crystallize/reactjs-components";
 
 export const ProductCard = ({ product }: ProductCardType) => {
+
     const isBundle = product?.bundle?.content?.value;
     const priceVariant = {
         price: product?.defaultVariant.priceVariant.price,
         currency: product?.defaultVariant.priceVariant.currency,
     };
     const image = product?.defaultVariant.firstImage;
+
     return (
         <>
             {!isBundle && (

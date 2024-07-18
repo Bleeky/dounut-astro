@@ -23,6 +23,14 @@ const { pathname } = Astro.url;
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
     <ViewTransitions />
+    <script
+      src="https://embeddables.p.mbirdcdn.net/sdk/v0/bird-sdk.js"
+      data-config-url="https://api.bird.com/workspaces/4e472cf6-6c8b-4dc0-92cb-bc671ab724e2/applications/10e52ff4-aed7-4b56-8423-ec0ec84f33a0/signature/2024-06-17T17-12-51_1c4bd8de2e"
+    ></script>
+    <script
+      defer
+      type="module"
+      src="https://embeddables.p.mbirdcdn.net/v1/web-components.es.js"></script>
   </head>
   <body class="relative text-text bg-primary">
     <Header client:only />
@@ -37,7 +45,7 @@ const { pathname } = Astro.url;
       )
     }
     <footer class="container mt-40 mx-auto pb-10">
-      <div class="flex mt-10  w-full text-center justify-end">
+      <div class="flex mt-10 w-full text-center justify-end">
         <div class="flex items-center gap-1 mt-10">
           <img src={CrystallizeLogo} alt="Crystallize" class="w-5" />
           Powered by <a href="https://crystallize.com" class="underline">

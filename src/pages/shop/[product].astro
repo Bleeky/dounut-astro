@@ -17,16 +17,45 @@ export async function getStaticPaths() {
 const { product } = Astro.params;
 
 const productData = await fetchProduct(`/shop/${product}`);
+const productEventData = {
+  productUrl: `https://dounut-astro-ashy.vercel.app${productData?.product?.path}`,
+  productImage: productData.product.defaultVariant.firstImage.url,
+  productPrice: productData.product.variants[0].price,
+};
 ---
 
-<Layout title={productData?.product?.name} description={productData?.prodcut?.name}>
-  <div class="lg:container mx-auto w-full lg:px-0 px-5">
-    {
-      productData ? (
-        <CrystallizeProduct product={productData.product} client:load/>
-      ) : (
-        <p>Product not found</p>
-      )
+<product-tracker
+  data-product-url={productEventData.productUrl}
+  data-product-image={productEventData.productImage}
+  data-product-price={productEventData.productPrice}
+>
+  <Layout
+    title={productData?.product?.name}
+    description={productData?.prodcut?.name}
+  >
+    <div class="lg:container mx-auto w-full lg:px-0 px-5">
+      {
+        productData ? (
+          <CrystallizeProduct product={productData.product} client:load />
+        ) : (
+          <p>Product not found</p>
+        )
+      }
+    </div>
+  </Layout>
+</product-tracker>
+
+<script>
+  class ProductTracker extends HTMLElement {
+    constructor() {
+      super();
+
+      window.Bird.tracker.ecommerce.productViewed({
+        product_image_url: this.dataset.productImage,
+        product_url: this.dataset.productUrl,
+        price: parseInt(this.dataset.productPrice, 10),
+      });
     }
-  </div>
-</Layout>
+  }
+  customElements.define("product-tracker", ProductTracker);
+</script>
