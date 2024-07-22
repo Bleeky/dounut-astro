@@ -9,6 +9,7 @@ import {
     variantToCartItem,
 } from "../use-cases/utils";
 import type { Product as ProductType } from "../use-cases/contracts/Product";
+import { addCartItem } from '../stores/cartStore';
 
 export const Product = ({ product }: { product: ProductType }) => {
     const [selectedVariant, setSelectedVariant] = useState(
@@ -16,27 +17,14 @@ export const Product = ({ product }: { product: ProductType }) => {
     );
     const onVariantChange = (variant: any) => setSelectedVariant(variant);
     const defaultPrice = getDefaultPriceVariant(selectedVariant?.priceVariants);
-    const [cart, setCart] = useState<any>([]);
     const [buttonText, setButtonText] = useState("Add to Cart");
 
     const addToCart = (product: any) => {
         setButtonText("Adding...");
-        const newCart = [...cart, variantToCartItem(product)];
-        setCart(newCart);
+        addCartItem(variantToCartItem(product));
         setButtonText("Added 🎉");
         setTimeout(() => setButtonText("Add to Cart"), 1000);
     };
-
-    useEffect(() => {
-        const cart = localStorage.getItem("cart");
-        if (cart) {
-            setCart(JSON.parse(cart));
-        }
-    }, []);
-
-    useEffect(() => {
-        localStorage.setItem("cart", JSON.stringify(cart));
-    }, [cart]);
 
     return (
         <>
@@ -50,7 +38,7 @@ export const Product = ({ product }: { product: ProductType }) => {
                     />
                 </div>
                 <Image
-                    {...product.defaultVariant?.firstImage}
+                    {...selectedVariant?.images[0]}
                     sizes="500px"
                     className="rounded-sm mx-auto"
                 />
@@ -62,12 +50,12 @@ export const Product = ({ product }: { product: ProductType }) => {
                     />
                 </div>
             </div>
-            <div className="flex z-10 justify-between lg:w-5/12 w-8/12 mx-auto bg-white p-5 text-text rounded-xl">
+            <div className="flex z-10 justify-between lg:w-5/12 w-8/12 mx-auto bg-white p-5 text-text rounded-xl mt-6">
                 <div>
                     <p className="font-semibold text-sm">Total price</p>
                     <p className="font-bold text-lg">
                         {getCurrencySymbol(
-                            defaultPrice?.currency ?? "EUR",
+                            defaultPrice?.currency ?? "€",
                             defaultPrice?.price ?? 0.0
                         )}
                     </p>
@@ -79,7 +67,7 @@ export const Product = ({ product }: { product: ProductType }) => {
                     {buttonText}
                 </button>
             </div>
-            <ProductBody body={product.body} table={product.table} />
+            <ProductBody description={product.description} dimensions={product.dimensions} />
             <p className="text-text mb-4 font-semibold">Related do(u)nuts</p>
             <RelatedProducts related={product.related} />
         </>

@@ -11,6 +11,7 @@ export async function fetchFrontPage(path: String, version: String) {
                         content {
                           ... on ContentChunkContent {
                             chunks {
+                              id
                               content {
                                 ... on SingleLineContent {
                                   text

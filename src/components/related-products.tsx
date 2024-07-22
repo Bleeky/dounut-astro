@@ -14,7 +14,7 @@ export const RelatedProducts = ({
                     key={index}
                     className="bg-primary px-4 py-3 rounded-xl border-2 border-grey  flex flex-col lg:bg-primary  lg:h-96 p-5 lg:w-[300px]  w-full"
                 >
-                    <div className="flex justify-between">
+                    <div className="flex justify-between mb-2">
                         <div className="flex gap-1">
                             {item.topics?.map((topic) => (
                                 <div
@@ -25,14 +25,14 @@ export const RelatedProducts = ({
                                 </div>
                             ))}
                         </div>
-                        <div>${item.defaultVariant?.price}</div>
+                        <div>€{item.defaultVariant?.price}</div>
                     </div>
                     <Image
                         {...item.defaultVariant?.firstImage}
                         sizes="300px"
                         loading="lazy"
                     />
-                    <h2 className="text-l text-center m-auto self-end">
+                    <h2 className="text-l text-center m-auto self-end mt-2">
                         {item.name}
                     </h2>
                 </a>

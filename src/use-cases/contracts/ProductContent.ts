@@ -11,12 +11,12 @@ export type ProductTable = {
 };
 
 export type ProductBody = {
-    body: {
+    description: {
         content: {
             paragraphs: Paragraph[];
         };
     };
-    table: {
+    dimensions: {
         content: ProductTable;
     };
 };

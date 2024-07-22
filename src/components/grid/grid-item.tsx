@@ -16,7 +16,7 @@ export const GridItem = ({ cell }: CellProps) => {
                         <h2 className="text-2xl font-bold">
                             {cell.item?.name}
                         </h2>
-                        <p className="mt-4">${cell.item?.variants[0]?.price}</p>
+                        <p className="mt-4">{cell.item?.variants[0]?.price}</p>
                     </div>
                     <TopicsDisplayer topics={cell.item?.topics} />
                 </div>
@@ -25,17 +25,17 @@ export const GridItem = ({ cell }: CellProps) => {
     ) : (
         <a href={cell.item.path}>
             <div className="flex flex-col bg-background3 px-5 py-7 rounded-xl xl:h-[600px] p-5  w-full h-auto min-h-[400px]">
-                <div className="flex justify-between items-start">
+                <div className="flex justify-between items-start mb-4">
                     <TopicsDisplayer topics={cell.item.topics} />
-                    <p className="self-end">${cell.item.variants[0]?.price}</p>
+                    <p className="self-end">€{cell.item.variants[0]?.price}</p>
                 </div>
                 <Image
                     {...(cell.item?.variants?.[0]?.images?.[0] as any)}
                     sizes="(max-width: 700px) 200px, 300px"
                     loading="lazy"
-                    className="mx-auto"
+                    className="mx-auto overflow-hidden"
                 />
-                <h2 className="text-2xl font-bold text-center w-40 m-auto">
+                <h2 className="text-2xl font-bold text-center w-40 m-auto mt-4">
                     {cell.item.name}
                 </h2>
             </div>

@@ -5,14 +5,18 @@ import Layout from "../layouts/Layout.astro";
 import { fetchFrontPage } from "../use-cases/queries/frontpage.ts";
 
 const data = await fetchFrontPage("/frontpage", "published");
+const title = data.catalogue.meta.content.chunks[0].find(
+  (index) => index.id === "text"
+).content.text;
+const description = data.catalogue.meta.content.chunks[0].find(
+  (index) => index.id === "plaintext"
+).content.plainText[0];
+
 const { catalogue, donuts } = data;
 const { grid } = catalogue;
 ---
 
-<Layout
-  title="Dounot"
-  description="Dounut is a minimal boilerplate built using AstroJS that helps you get started with Crystallize."
->
+<Layout title={title} description={description}>
   <div class="py-10 lg:container mx-auto w-full md:px-0 px-3">
     <Grid grid={grid} />
     <Products donuts={donuts} />
@@ -23,8 +27,8 @@ const { grid } = catalogue;
   window.Bird.contact.identify(
     {
       strategy: "Visitor",
-      // identifier: { key: "emailaddress", value: "tarantino@gmail.com" },
-      identifier: { key: "emailaddress", value: "carles.ferrater@bird.com" },
+      identifier: { key: "emailaddress", value: "tarantino@gmail.com" },
+      // identifier: { key: "emailaddress", value: "carles.ferrater@bird.com" },
     },
     { subscribedEmail: true }
   );

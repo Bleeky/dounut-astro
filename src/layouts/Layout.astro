@@ -3,6 +3,12 @@ import { ViewTransitions } from "astro:transitions";
 import { Header } from "../components/header";
 import { Background } from "../components/background";
 import CrystallizeLogo from "../assets/crystallize-logo.svg?url";
+import { fetchMeta } from "../use-cases/queries/meta.ts";
+
+const data = await fetchMeta("/frontpage");
+const logo = data.meta.meta.content.chunks[0].find(
+  (index) => index.id === "logo"
+).content.firstImage.variants[0].url;
 
 interface Props {
   title: string;
@@ -33,7 +39,7 @@ const { pathname } = Astro.url;
       src="https://embeddables.p.mbirdcdn.net/v1/web-components.es.js"></script>
   </head>
   <body class="relative text-text bg-primary">
-    <Header client:only />
+    <Header client:only logo={logo} />
     <slot />
     {
       pathname === "/cart" ||

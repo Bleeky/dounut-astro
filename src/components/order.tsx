@@ -19,22 +19,22 @@ export const Order = ({ order }: OrderProps) => {
                                         {item.name} x {item.quantity}
                                     </p>
                                 </div>
-                                <p>${item.price.gross * item.quantity}</p>
+                                <p>€{item.price.gross * item.quantity}</p>
                             </div>
                         );
                     })}
                     <div className="flex flex-col gap-3 border-t-2 pt-5">
                         <div className="flex justify-between">
                             <p>Subtotal</p>
-                            <p>${total.gross}</p>
+                            <p>€{total.gross}</p>
                         </div>
                         <div className="flex justify-between">
                             <p>Tax</p>
-                            <p>${total.net - total.gross}</p>
+                            <p>€{total.net - total.gross}</p>
                         </div>
                         <div className="flex justify-between">
                             <p className="font-bold">Total</p>
-                            <p>${total.net}</p>
+                            <p>€{total.net}</p>
                         </div>
                     </div>
                 </div>

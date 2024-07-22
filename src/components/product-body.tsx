@@ -2,10 +2,10 @@ import { ContentTransformer, Image } from "@crystallize/reactjs-components";
 import ReactPlayer from "react-player";
 import { type ProductBody as ProductBodyType } from "../use-cases/contracts/ProductContent";
 
-export const ProductBody = ({ body, table }: ProductBodyType) => {
+export const ProductBody = ({ description, dimensions }: ProductBodyType) => {
     return (
         <div className="flex flex-col gap-3 my-10 lg:w-9/12 w-full mx-auto z-10">
-            {body?.content?.paragraphs.map((paragraph, index) => (
+            {description?.content?.paragraphs.map((paragraph, index) => (
                 <div key={index} className="flex flex-col justify-between">
                     <div className="my-3 text-text md:px-20">
                         {paragraph.title && (
@@ -55,7 +55,7 @@ export const ProductBody = ({ body, table }: ProductBodyType) => {
                     )}
                 </div>
             ))}
-            {table?.content?.sections.map((section, index) => (
+            {dimensions?.content?.sections.map((section, index) => (
                 <div
                     key={index}
                     className="flex lg:flex-row flex-col justify-between text-text my-20"
@@ -64,7 +64,6 @@ export const ProductBody = ({ body, table }: ProductBodyType) => {
                         <h3 className="font-bold text-2xl py-2">
                             {section?.title}
                         </h3>
-                        <p className="italic">per 50 g</p>
                     </div>
                     <div className="lg:w-7/12 w-full">
                         {section.properties.map((property, index) => (

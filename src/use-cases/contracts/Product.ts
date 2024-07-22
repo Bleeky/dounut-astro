@@ -5,7 +5,7 @@ import type { RelatedItem } from './RelatedItem';
 
 export type Product = ProductType & {
     related: { content: { items: RelatedItem[] } };
-    table: { content: ProductTable };
-    body: { content: { paragraphs: Paragraph[] } };
+    dimensions: { content: ProductTable };
+    description: { content: { paragraphs: Paragraph[] } };
     summary: { content: { json: any } };
 };

@@ -6,15 +6,39 @@ export async function fetchProduct(path: String) {
             `
             #graphql
             query Product($path: String!, $version: VersionLabel) {
+              meta: catalogue(path: "/frontpage", language: "en", version: $version) {
+                meta: component(id: "meta") {
+                  content {
+                    ... on ContentChunkContent {
+                      chunks {
+                        id
+                        content {
+                          ... on ImageContent {
+                            firstImage {
+                              variants {
+                                url
+                                key
+                                width
+                                height
+                              }
+                              altText
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
               product: catalogue(path: $path, language: "en", version: $version) {
-                summary: component(id: "brief") {
+                summary: component(id: "summary") {
                   content {
                     ... on RichTextContent {
                       json
                     }
                   }
                 }
-                body: component(id: "body") {
+                description: component(id: "description") {
                   content {
                     ... on ParagraphCollectionContent {
                       paragraphs {
@@ -36,7 +60,7 @@ export async function fetchProduct(path: String) {
                     }
                   }
                 }
-                table: component(id: "nutrition") {
+                dimensions: component(id: "dimensions") {
                   content {
                     ... on PropertiesTableContent {
                       sections {

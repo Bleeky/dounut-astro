@@ -19,12 +19,12 @@ export const ProductCard = ({ product }: ProductCardType) => {
                     className="flex flex-col lg:bg-primary rounded-xl lg:h-96 p-5 lg:w-[300px] bg-background2 w-full"
                 >
                     <div>
-                        <div className="flex justify-between items-start">
+                        <div className="flex justify-between items-start mb-4">
                             <TopicsDisplayer topics={product?.topics} />
                             <p className="self-end">
                                 {priceVariant?.currency === "USD"
                                     ? "$"
-                                    : priceVariant?.currency}
+                                    : "€"}
                                 {priceVariant?.price}
                             </p>
                         </div>
@@ -34,7 +34,7 @@ export const ProductCard = ({ product }: ProductCardType) => {
                             loading="lazy"
                             className="mx-auto"
                         />
-                        <h2 className="text-2xl font-bold text-center m-auto w-40">
+                        <h2 className="text-2xl font-bold text-center m-auto w-40 mt-4">
                             {product?.name}
                         </h2>
                     </div>

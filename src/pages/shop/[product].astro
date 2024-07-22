@@ -15,8 +15,8 @@ export async function getStaticPaths() {
 }
 
 const { product } = Astro.params;
-
 const productData = await fetchProduct(`/shop/${product}`);
+
 const productEventData = {
   productUrl: `https://dounut-astro-ashy.vercel.app${productData?.product?.path}`,
   productImage: productData.product.defaultVariant.firstImage.url,

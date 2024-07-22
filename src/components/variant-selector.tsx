@@ -4,22 +4,24 @@ import { isEqual } from "../use-cases/utils";
 function reduceAttributes(variants: any[]) {
     return variants.reduce((acc, variant) => {
         const attrs = acc;
-        variant.attributes.forEach(
-            ({ attribute, value }: { attribute: any; value: any }) => {
-                const currentAttribute = attrs[attribute];
-                if (!currentAttribute) {
-                    attrs[attribute] = [value];
-                    return;
+        if (variant.attributes) {
+            variant.attributes.forEach(
+                ({ attribute, value }: { attribute: any; value: any }) => {
+                    const currentAttribute = attrs[attribute];
+                    if (!currentAttribute) {
+                        attrs[attribute] = [value];
+                        return;
+                    }
+    
+                    const valueExists = currentAttribute.find(
+                        (str: string) => str === value
+                    );
+                    if (!valueExists) {
+                        attrs[attribute].push(value);
+                    }
                 }
-
-                const valueExists = currentAttribute.find(
-                    (str: string) => str === value
-                );
-                if (!valueExists) {
-                    attrs[attribute].push(value);
-                }
-            }
-        );
+            );    
+        }
 
         return attrs;
     }, {});
