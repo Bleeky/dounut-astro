@@ -15,7 +15,7 @@ export const Product = ({ product }: { product: ProductType }) => {
   const [selectedVariant, setSelectedVariant] = useState(
     product?.variants?.[0]
   );
-  const [priceWithSymbol, setPriceWithSymbol] = useState('');
+  const [priceWithSymbol, setPriceWithSymbol] = useState("");
   const onVariantChange = (variant: any) => setSelectedVariant(variant);
   const defaultPrice = getDefaultPriceVariant(selectedVariant?.priceVariants);
   const [buttonText, setButtonText] = useState("Add to Cart");
@@ -42,11 +42,17 @@ export const Product = ({ product }: { product: ProductType }) => {
           <h1 className="font-extrabold text-5xl mb-3">{product.name}</h1>
           <ContentTransformer json={product?.summary?.content?.json as [any]} />
         </div>
-        <Image
-          {...selectedVariant?.images[0].variants[selectedVariant?.images[0].variants?.length - 1]}
-          sizes="500px"
-          className="rounded-sm mx-auto"
-        />
+        <div className="mx-auto">
+          <img
+            className="rounded-xl"
+            src={
+              selectedVariant?.images[0].variants[
+                selectedVariant?.images[0].variants?.length - 1
+              ].url
+            }
+          ></img>
+        </div>
+
         <div className="lg:mb-0 mb-5">
           <VariantSelector
             variants={product.variants!}
@@ -58,9 +64,7 @@ export const Product = ({ product }: { product: ProductType }) => {
       <div className="flex z-10 justify-between lg:w-5/12 w-8/12 mx-auto bg-white p-5 text-text rounded-xl mt-6">
         <div>
           <p className="font-semibold text-sm">Total price</p>
-          <p className="font-bold text-lg">
-            {priceWithSymbol}
-          </p>
+          <p className="font-bold text-lg">{priceWithSymbol}</p>
         </div>
         <button
           className="bg-background2 px-4 rounded-xl"

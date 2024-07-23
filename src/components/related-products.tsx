@@ -48,11 +48,14 @@ export const RelatedProducts = ({
                 )}
               </div>
             </div>
-            <Image
-              {...item.defaultVariant?.firstImage}
-              sizes="300px"
-              loading="lazy"
-            />
+            <div className="mx-auto">
+              <img
+                className="rounded-xl"
+                width={300}
+                loading="lazy"
+                src={item.defaultVariant?.firstImage.url}
+              ></img>
+            </div>
             <h2 className="text-l text-center m-auto self-end mt-2">
               {item.name}
             </h2>

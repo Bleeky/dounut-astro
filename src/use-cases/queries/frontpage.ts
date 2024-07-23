@@ -48,6 +48,13 @@ export async function fetchFrontPage(path: String, version: String) {
                                   item {
                                     name
                                     path
+                                    summary: component(id: "summary") {
+                                      content {
+                                        ... on RichTextContent {
+                                          json
+                                        }
+                                      }
+                                    }
                                     topics {
                                       name
                                     }
