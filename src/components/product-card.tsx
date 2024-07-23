@@ -16,7 +16,7 @@ export const ProductCard = ({ product }: ProductCardType) => {
             {!isBundle && (
                 <a
                     href={product?.path}
-                    className="flex flex-col lg:bg-primary rounded-xl lg:h-96 p-5 lg:w-[300px] bg-background2 w-full"
+                    className="flex flex-col lg:bg-primary rounded-xl h-auto p-5 lg:w-[300px] bg-background2 w-full"
                 >
                     <div>
                         <div className="flex justify-between items-start mb-4">

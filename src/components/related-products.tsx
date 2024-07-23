@@ -28,7 +28,7 @@ export const RelatedProducts = ({
           <a
             href={item.path}
             key={index}
-            className="bg-primary px-4 py-3 rounded-xl border-2 border-grey  flex flex-col lg:bg-primary  lg:h-96 p-5 lg:w-[300px]  w-full"
+            className="bg-primary px-4 py-3 rounded-xl border-2 border-grey  flex flex-col lg:bg-primary h-auto p-5 lg:w-[300px]  w-full"
           >
             <div className="flex justify-between mb-2">
               <div className="flex gap-1">
