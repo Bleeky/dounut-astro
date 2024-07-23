@@ -1,6 +1,6 @@
 import { useStore } from '@nanostores/react';
 import type { LocalCartItem } from "../use-cases/contracts/LocalCartItem";
-import { cartItems, removeCartItem } from '../stores/cartStore';
+import { cartItems, removeCartItem, emptyCart } from '../stores/cartStore';
 
 export const LocalCart = () => {
     
@@ -43,7 +43,7 @@ export const LocalCart = () => {
                         </div>
                         <p>€{item.price * item.quantity}</p>
                         <button onClick={() => {
-                            removeCartItem(item)
+                            emptyCart()
                         }}>x</button>
                     </div>
                 ))}

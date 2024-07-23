@@ -26,5 +26,5 @@ export function removeCartItem({sku}) {
 }
 
 export function emptyCart() {
-  cartItems = map({});
+  cartItems.set({})
 }
