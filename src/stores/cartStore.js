@@ -24,3 +24,7 @@ export function addCartItem({ sku, name, price, image, attributes }) {
 export function removeCartItem({sku}) {
   cartItems.setKey(sku, undefined)
 }
+
+export function emptyCart() {
+  cartItems = map({});
+}

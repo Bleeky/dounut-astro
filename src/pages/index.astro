@@ -6,10 +6,10 @@ import { fetchFrontPage } from "../use-cases/queries/frontpage.ts";
 
 const data = await fetchFrontPage("/frontpage", "published");
 const title = data.catalogue.meta.content.chunks[0].find(
-  (index) => index.id === "text"
+  (index: { id: string }) => index.id === "text"
 ).content.text;
 const description = data.catalogue.meta.content.chunks[0].find(
-  (index) => index.id === "plaintext"
+  (index: { id: string }) => index.id === "plaintext"
 ).content.plainText[0];
 
 const { catalogue, donuts } = data;

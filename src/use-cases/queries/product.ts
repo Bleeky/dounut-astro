@@ -141,7 +141,10 @@ export async function fetchProduct(path: String) {
                         }
                         ... on Product {
                           defaultVariant {
-                            price
+                            priceVariant(identifier: "default") {
+                              price
+                              currency
+                            }
                             firstImage {
                               url
                               altText
