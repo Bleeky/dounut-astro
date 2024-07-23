@@ -3,7 +3,7 @@ import { createOrder } from "../../use-cases/mutations/create-order";
 
 export const POST: APIRoute = async ({ request }) => {
     let data = await request.json();
-    let cart = data.basketModel.map(
+    let cart = Object.values(data.basketModel).map(
         (item: {
             sku: string;
             quantity: number;
