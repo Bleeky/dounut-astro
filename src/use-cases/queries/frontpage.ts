@@ -1,11 +1,11 @@
 import { apiClient } from "../shared";
 
-export async function fetchFrontPage(path: String, version: String) {
+export async function fetchFrontPage(path: String, version: String, productsPath: String = "/shop") {
     try {
         return await apiClient.catalogueApi(
             `
                #graphql
-                query($path: String!, $version: VersionLabel) {
+                query($path: String!, $version: VersionLabel, $productsPath: String!) {
                     catalogue(path: $path, language: "en", version: $version) {
                       meta: component(id: "meta") {
                         content {
@@ -27,7 +27,6 @@ export async function fetchFrontPage(path: String, version: String) {
                                       width
                                       height
                                     }
-                                    altText
                                   }
                                 }
                               }
@@ -67,7 +66,6 @@ export async function fetchFrontPage(path: String, version: String) {
                                             width
                                             height
                                           }
-                                          altText
                                         }
                                         price
                                       }
@@ -80,7 +78,7 @@ export async function fetchFrontPage(path: String, version: String) {
                         }
                       }
                     }
-                    donuts: catalogue(path: "/shop", language: "en") {
+                    products: catalogue(path: $productsPath, language: "en") {
                       children {
                         id
                         topics {
@@ -108,7 +106,6 @@ export async function fetchFrontPage(path: String, version: String) {
                                 width
                                 height
                               }
-                              altText
                             }
                             priceVariant(identifier: "default") {
                               price
@@ -124,6 +121,7 @@ export async function fetchFrontPage(path: String, version: String) {
             {
                 path,
                 version,
+                productsPath,
             }
         );
     } catch (error) {

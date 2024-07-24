@@ -1,21 +1,16 @@
 ---
-import { fetchAllProducts } from "../../use-cases/queries/all-products";
 import { fetchProduct } from "../../use-cases/queries/product";
+import { fetchMeta } from "../../use-cases/queries/meta";
 
 import Layout from "../../layouts/Layout.astro";
 import { Product as CrystallizeProduct } from "../../components/product";
 
-export const prerender = true;
-
-export async function getStaticPaths() {
-  const paths = await fetchAllProducts();
-  return paths.catalogue.children.map((child: { path: string }) => ({
-    params: { product: child.path.replace("/shop/", "") },
-  }));
-}
-
 const { product } = Astro.params;
-const productData = await fetchProduct(`/shop/${product}`);
+const meta = await fetchMeta("/frontpage");
+const shop_path = meta.meta.meta.content.chunks[0].find(
+  (index: { id: string }) => index.id === "shoppath"
+).content.text;
+const productData = await fetchProduct(`${shop_path}/${product}`);
 
 const productEventData = {
   productUrl: `https://dounut-astro-ashy.vercel.app${productData?.product?.path}`,

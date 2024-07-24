@@ -3,8 +3,9 @@ import { TopicsDisplayer } from "../topics-displayer";
 import type { CellProps } from "../../use-cases/contracts/Cell";
 
 export const GridItem = ({ cell }: CellProps) => {
+  if (!cell.item) return null;
   return cell.layout.colspan === 3 ? (
-    <a href={cell.item?.path}>
+    <a href={cell?.item?.path}>
       <div className="flex relative lg:flex-row flex-col">
         <Image
           {...(cell.item?.variants?.[0]?.images?.[0] as any)}
@@ -21,27 +22,23 @@ export const GridItem = ({ cell }: CellProps) => {
       </div>
     </a>
   ) : (
-    <a href={cell.item.path}>
-      <div className="flex flex-col bg-background3 px-5 py-7 rounded-xl xl:h-[700px] p-5  w-full h-auto min-h-[500px]">
+    <a href={cell?.item?.path}>
+      <div className="flex flex-col bg-background4 px-5 py-7 rounded-xl xl:h-[700px] p-5  w-full h-auto min-h-[500px]">
         <div className="flex justify-between items-start mb-4">
           <TopicsDisplayer topics={cell.item.topics} />
           <p className="self-end">€{cell.item.variants[0]?.price}</p>
         </div>
-        {/* <Image
-          {...(cell.item?.variants?.[0]?.images?.[0] as any)}
-          sizes="(max-width: 700px) 200px, 300px"
-          loading="lazy"
-          className="mx-auto overflow-hidden"
-        /> */}
         <div className="mx-auto max-h-106">
-              <img
-                className="rounded-xl max-w-full max-h-full block"
-                loading="lazy"
-                src={ cell.item?.variants?.[0]?.images?.[0].variants[
-                  cell.item?.variants?.[0]?.images?.[0].variants?.length - 1
-                ].url}
-              ></img>
-            </div>
+          <img
+            className="rounded-xl max-w-full max-h-full block"
+            loading="lazy"
+            src={
+              cell.item?.variants?.[0]?.images?.[0].variants[
+                cell.item?.variants?.[0]?.images?.[0].variants?.length - 1
+              ].url
+            }
+          ></img>
+        </div>
         <div>
           <h2 className="text-2xl font-bold text-center w-40 m-auto mt-4">
             {cell.item.name}

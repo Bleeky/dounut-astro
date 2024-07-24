@@ -13,6 +13,9 @@ export async function fetchMeta(path: String) {
                       chunks {
                         id
                         content {
+                          ... on SingleLineContent {
+                            text
+                          }
                           ... on ImageContent {
                             firstImage {
                               variants {
@@ -21,7 +24,6 @@ export async function fetchMeta(path: String) {
                                 width
                                 height
                               }
-                              altText
                             }
                           }
                         }

@@ -21,7 +21,6 @@ export async function fetchProduct(path: String) {
                                 width
                                 height
                               }
-                              altText
                             }
                           }
                         }
@@ -49,7 +48,6 @@ export async function fetchProduct(path: String) {
                           json
                         }
                         images {
-                          altText
                           variants {
                             width
                             height
@@ -82,7 +80,6 @@ export async function fetchProduct(path: String) {
                   defaultVariant {
                     firstImage {
                       url
-                      altText
                       variants {
                         url
                         key
@@ -112,7 +109,6 @@ export async function fetchProduct(path: String) {
                     }
                     images {
                       url
-                      altText
                       key
             
                       variants {
@@ -147,7 +143,6 @@ export async function fetchProduct(path: String) {
                             }
                             firstImage {
                               url
-                              altText
                               variants {
                                 url
                                 key

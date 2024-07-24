@@ -10,7 +10,6 @@ export const ProductCard = ({ product }: ProductCardType) => {
         currency: product?.defaultVariant.priceVariant.currency,
     };
     const image = product?.defaultVariant.firstImage;
-
     return (
         <>
             {!isBundle && (

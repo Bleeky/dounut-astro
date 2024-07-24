@@ -3,8 +3,14 @@ import { Grid } from "../components/grid";
 import { Products } from "../components/products";
 import Layout from "../layouts/Layout.astro";
 import { fetchFrontPage } from "../use-cases/queries/frontpage.ts";
+import { fetchMeta } from "../use-cases/queries/meta.ts";
 
-const data = await fetchFrontPage("/frontpage", "published");
+const meta = await fetchMeta("/frontpage");
+const shop_path = meta.meta.meta.content.chunks[0].find(
+  (index: { id: string }) => index.id === "shoppath"
+).content.text;
+
+const data = await fetchFrontPage("/frontpage", "published", shop_path);
 const title = data.catalogue.meta.content.chunks[0].find(
   (index: { id: string }) => index.id === "text"
 ).content.text;
@@ -12,14 +18,14 @@ const description = data.catalogue.meta.content.chunks[0].find(
   (index: { id: string }) => index.id === "plaintext"
 ).content.plainText[0];
 
-const { catalogue, donuts } = data;
+const { catalogue, products } = data;
 const { grid } = catalogue;
 ---
 
 <Layout title={title} description={description}>
   <div class="py-10 lg:container mx-auto w-full md:px-0 px-3">
     <Grid grid={grid} />
-    <Products donuts={donuts} />
+    <Products products={products} />
   </div>
 </Layout>
 
