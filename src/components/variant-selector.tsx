@@ -103,13 +103,8 @@ export const VariantSelector = ({
                                         })
                                     }
                                     type="button"
-                                    className="bg-white drop-shadow-sm w-30 px-3 py-2 rounded-sm text-text font-semibold"
-                                    style={{
-                                        border:
-                                            value === selectedAttr.value
-                                                ? "3px solid #373567"
-                                                : "3px solid transparent",
-                                    }}
+                                    className={`bg-white drop-shadow-sm w-30 px-3 py-2 rounded-sm text-text font-semibold border-2 ${value === selectedAttr.value ? 'border-teal-600' : ''}`}
+                                   
                                 >
                                     {value}
                                 </button>

@@ -59,6 +59,10 @@ export async function fetchFrontPage(path: String, version: String, productsPath
                                     }
                                     ... on Product {
                                       variants {
+                                        priceVariant(identifier: "default") {
+                                          price
+                                          currency
+                                        }
                                         images {
                                           variants {
                                             url

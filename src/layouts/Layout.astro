@@ -41,15 +41,6 @@ const { pathname } = Astro.url;
   <body class="relative text-text bg-primary">
     <Header client:only logo={logo} />
     <slot />
-    {
-      pathname === "/cart" ||
-      pathname === "/checkout" ||
-      pathname.startsWith("/order") ? null : (
-        <div class="absolute inset-0 bg-fixed -z-10">
-          <Background />
-        </div>
-      )
-    }
     <footer class="container mt-40 mx-auto pb-10">
       <div class="flex mt-10 w-full text-center justify-end">
         <div class="flex items-center gap-1 mt-10">

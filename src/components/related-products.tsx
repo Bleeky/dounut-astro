@@ -1,4 +1,4 @@
-import { Image } from "@crystallize/reactjs-components";
+import { TopicsDisplayer } from "./topics-displayer";
 import type { RelatedItem } from "../use-cases/contracts/RelatedItem";
 import { getCurrencySymbol } from "../use-cases/utils";
 import { useState, useEffect } from "react";
@@ -22,43 +22,24 @@ export const RelatedProducts = ({
   }, []);
 
   return (
-    <div className="flex w-full items-start flex-wrap gap-1">
+    <div className="grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-3 lg:grid-cols-5 xl:grid-cols-6 xl:gap-x-8">
       {relatedItems?.map((item, index: number) => {
         return (
-          <a
-            href={item.path}
-            key={index}
-            className="bg-primary px-4 py-3 rounded-xl border-2 border-grey  flex flex-col lg:bg-primary h-auto p-5 lg:w-[300px]  w-full"
-          >
-            <div className="flex justify-between mb-2">
-              <div className="flex gap-1">
-                {item.topics?.map((topic) => (
-                  <div
-                    className="text-sm bg-grey px-2 py-1 rounded-2xl"
-                    key={topic.name}
-                  >
-                    {topic.name}
-                  </div>
-                ))}
-              </div>
-              <div>
-                {getCurrencySymbol(
-                  item.defaultVariant?.priceVariant?.currency ?? "EUR",
-                  item.defaultVariant?.priceVariant?.price ?? 0.0
-                )}
-              </div>
-            </div>
-            <div className="mx-auto">
+          <a href={item.path} key={index} className="group grid grid-rows-1">
+            <TopicsDisplayer topics={item.topics} />
+            <div className="aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-lg bg-gray-200 xl:aspect-h-8 xl:aspect-w-7">
               <img
-                className="rounded-xl"
-                width={300}
-                loading="lazy"
                 src={item.defaultVariant?.firstImage.url}
-              ></img>
+                className="h-full w-full object-cover object-center group-hover:opacity-75"
+              />
             </div>
-            <h2 className="text-l text-center m-auto self-end mt-2">
-              {item.name}
-            </h2>
+            <h3 className="mt-4 text-sm text-gray-700">{item.name}</h3>
+            <p className="mt-1 text-lg font-medium text-gray-900">
+              {getCurrencySymbol(
+                item.defaultVariant?.priceVariant?.currency ?? "EUR",
+                item.defaultVariant?.priceVariant?.price ?? 0.0
+              )}
+            </p>
           </a>
         );
       })}

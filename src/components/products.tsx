@@ -9,7 +9,7 @@ export const Products = ({
     return (
         <div className="mt-20">
             <p className="text-lg font-semibold mb-10">All items</p>
-            <div className="flex flex-wrap gap-5">
+            <div className="grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-4 lg:grid-cols-6 xl:grid-cols-7 xl:gap-x-5">
                 {products?.children?.map((product: any, index: number) => (
                     <ProductCard product={product} key={index} />
                 ))}

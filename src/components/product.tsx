@@ -61,13 +61,13 @@ export const Product = ({ product }: { product: ProductType }) => {
           />
         </div>
       </div>
-      <div className="flex z-10 justify-between lg:w-5/12 w-8/12 mx-auto bg-white p-5 text-text rounded-xl mt-6">
+      <div className="flex z-10 justify-between lg:w-5/12 w-8/12 mx-auto bg-white border-2 border-teal-600 p-5 text-text rounded-xl mt-6">
         <div>
           <p className="font-semibold text-sm">Total price</p>
           <p className="font-bold text-lg">{priceWithSymbol}</p>
         </div>
         <button
-          className="bg-background2 px-4 rounded-xl"
+          className="bg-teal-600 px-4 rounded-xl text-white"
           onClick={() => addToCart(selectedVariant)}
         >
           {buttonText}
