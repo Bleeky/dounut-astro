@@ -25,7 +25,7 @@ export const RelatedProducts = ({
     <div className="grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-3 lg:grid-cols-5 xl:grid-cols-6 xl:gap-x-8">
       {relatedItems?.map((item, index: number) => {
         return (
-          <a href={item.path} key={index} className="group grid grid-rows-1">
+          <a href={`/shop${item.path}`} key={index} className="group grid grid-rows-1">
             <TopicsDisplayer topics={item.topics} />
             <div className="aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-lg bg-gray-200 xl:aspect-h-8 xl:aspect-w-7">
               <img

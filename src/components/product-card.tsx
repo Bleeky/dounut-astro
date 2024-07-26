@@ -7,7 +7,7 @@ export const ProductCard = ({ product }: ProductCardType) => {
   return (
     <>
       {!isBundle && (
-        <a href={product?.path} className="group grid grid-rows-1">
+        <a href={`/shop${product?.path}`} className="group grid grid-rows-1">
           <TopicsDisplayer topics={product.topics} />
           <div className="aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-lg bg-gray-200 xl:aspect-h-8 xl:aspect-w-7">
             <img

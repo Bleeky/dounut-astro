@@ -1,9 +1,9 @@
 ---
-import { fetchProduct } from "../../use-cases/queries/product";
-import { fetchMeta } from "../../use-cases/queries/meta";
+import { fetchProduct } from "../../../use-cases/queries/product";
+import { fetchMeta } from "../../../use-cases/queries/meta";
 
-import Layout from "../../layouts/Layout.astro";
-import { Product as CrystallizeProduct } from "../../components/product";
+import Layout from "../../../layouts/Layout.astro";
+import { Product as CrystallizeProduct } from "../../../components/product";
 
 const { product } = Astro.params;
 const meta = await fetchMeta("/frontpage");
