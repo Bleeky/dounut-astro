@@ -8,6 +8,7 @@ export const LocalCart = () => {
     0
   );
 
+
   return (
     <section>
       <div className="mx-auto max-w-screen-xl px-4 py-8 sm:px-6 sm:py-12 lg:px-8">
@@ -21,7 +22,7 @@ export const LocalCart = () => {
           <div className="mt-8">
             <ul className="space-y-4">
               {Object.values($cartItems).map((item: any, index: number) => (
-                <li className="flex items-center gap-4">
+                <li className="flex items-center gap-4" key={index}>
                   <img
                     src={item.image}
                     alt=""
@@ -53,7 +54,8 @@ export const LocalCart = () => {
                       <input
                         type="number"
                         min="1"
-                        value={item.quantity}
+                        defaultValue={item.quantity}
+                        readOnly
                         id="Line1Qty"
                         className="h-8 w-12 rounded border-gray-200 bg-gray-50 p-0 text-center text-xs text-gray-600 [-moz-appearance:_textfield] focus:outline-none [&::-webkit-inner-spin-button]:m-0 [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:m-0 [&::-webkit-outer-spin-button]:appearance-none"
                       />

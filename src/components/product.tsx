@@ -16,7 +16,9 @@ export const Product = ({ product }: { product: ProductType }) => {
     product?.variants?.[0]
   );
   const [priceWithSymbol, setPriceWithSymbol] = useState("");
-  const onVariantChange = (variant: any) => setSelectedVariant(variant);
+  const onVariantChange = (variant: any) => {
+    setSelectedVariant(variant);
+  };
   const defaultPrice = getDefaultPriceVariant(selectedVariant?.priceVariants);
   const [buttonText, setButtonText] = useState("Add to Cart");
   useEffect(() => {
@@ -27,6 +29,20 @@ export const Product = ({ product }: { product: ProductType }) => {
       )
     );
   }, []);
+  useEffect(() => {
+    window.Bird.contact.identify(
+      {
+        strategy: "Visitor",
+        identifier: { key: "emailaddress", value: "tarantino@gmail.com" },
+      },
+      { subscribedEmail: true }
+    );
+    window.Bird.tracker.ecommerce.productViewed({
+      product_image_url: selectedVariant?.images[0].url,
+      product_url: `https://dounut-astro-ashy.vercel.app${product?.path}`,
+      price: parseInt(selectedVariant?.price, 10),
+    });
+  }, [selectedVariant]);
 
   const addToCart = (product: any) => {
     setButtonText("Adding...");
