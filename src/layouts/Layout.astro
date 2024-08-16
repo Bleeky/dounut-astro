@@ -6,6 +6,9 @@ import CrystallizeLogo from "../assets/crystallize-logo.svg?url";
 import { fetchMeta } from "../use-cases/queries/meta.ts";
 
 const data = await fetchMeta("/frontpage");
+const dataConfigUrl = data.meta.meta.content.chunks[0].find(
+  (index: { id: string }) => index.id === "dataconfigurl"
+).content.text;
 const logo = data.meta.meta.content.chunks[0].find(
   (index: { id: string }) => index.id === "logo"
 ).content.firstImage.variants[0].url;
@@ -31,8 +34,7 @@ const { pathname } = Astro.url;
     <ViewTransitions />
     <script
       src="https://embeddables.p.mbirdcdn.net/sdk/v0/bird-sdk.js"
-      data-config-url="https://api.bird.com/workspaces/45e7c14d-e008-494b-90b7-56cb1ee77ea8/applications/ce3b16c9-9a87-4245-ae4a-0b7ef1298e07/signature/2024-06-17T17-12-51_750d9bfd28"
-    ></script>
+      data-config-url={dataConfigUrl}></script>
     <script
       defer
       type="module"
