@@ -38,6 +38,9 @@ export const Product = ({ product }: { product: ProductType }) => {
       { subscribedEmail: true }
     );
     window.Bird.tracker.ecommerce.productViewed({
+      product_name: selectedVariant?.name,
+      product_id: selectedVariant?.id,
+      product_sku: selectedVariant?.sku,
       product_image_url: selectedVariant?.images[0].url,
       product_url: `https://dounut-astro-ashy.vercel.app${product?.path}`,
       price: parseInt(selectedVariant?.price, 10),
