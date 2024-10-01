@@ -98,6 +98,8 @@ export const CheckoutForm = () => {
     );
     window.Bird.tracker.ecommerce.checkoutAbandoned({
       checkout_url: "https://dounut-astro-ashy.vercel.app/checkout",
+      items: Object.values($cartItems).map((item: any) => item),
+      product_ids: Object.values($cartItems).map((item: any) => item.id),
       product_names: Object.values($cartItems).map((item: any) => item.name),
       product_skus: Object.values($cartItems).map((item: any) => item.sky),
       total_price: total,
