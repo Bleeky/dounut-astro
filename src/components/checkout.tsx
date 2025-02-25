@@ -20,7 +20,6 @@ export const CheckoutForm = () => {
     (amount: number, item: any) => item.price * item.quantity + amount,
     0
   );
-  console.log($cartItems);
 
   const checkoutModel: any = {
     basketModel: $cartItems,
